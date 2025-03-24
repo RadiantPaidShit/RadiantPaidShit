@@ -662,7 +662,7 @@ end
 
 local function toggleLock()
     if enabled then
-        ImageButton.Image = "rbxassetid://134820707156642"
+        ImageButton.Image = "rbxassetid://120805421574890"
         enabled = false
         Plr = nil
         destroyTracer()  
@@ -676,7 +676,7 @@ local function toggleLock()
             createTracer(game.Players.LocalPlayer, Plr)  
         end
             
-            ImageButton.Image = "rbxassetid://78342062013795"
+            ImageButton.Image = "rbxassetid://120805421574890"
 Library:Notify("Target Locked: " .. tostring(Plr.Character.Humanoid.DisplayName)
             
             )
