@@ -1,3 +1,36 @@
+local allowedHWIDs = {
+    ["0cf7d782-6b8b-471d-8c7e-37d2968fea35"] = true, -- HWID 1
+    ["403df16b-f4c2-41ea-ae44-f662f2ff0b96"] = true, -- HWID 2
+    ["55806a89-9226-4c3b-9ee5-8a8a930a6b4f"] = true, -- HWID 3
+    ["c2cef4c8-f17e-4caf-b7c4-295ec58affb5"] = true, -- HWID 4
+    ["33445566-CCDD-EEFF-1122-334455667788"] = true, -- HWID 5
+    ["dfe7fc29-9725-4da8-bd85-057384328d6b"] = true, -- HWID 6
+    ["55667788-EEFF-1122-3344-556677889900"] = true, -- HWID 7
+    ["66778899-FF11-2233-4455-667788990011"] = true, -- HWID 8
+    ["77889900-1122-3344-5566-778899001122"] = true, -- HWID 9
+    ["21ff31fb-9cac-41d5-8ee1-bb282b8e6350"] = true, -- HWID 10
+    ["ca72b60e-6dd3-46f7-a3f9-572df75ebac0"] = true, -- HWID 11
+    ["7f2b4689-3dae-49f2-838d-8efea722f5a7"] = true, -- HWID 12
+    ["e8644963-3293-4b5f-806c-7e98c4cd0c2b"] = true, -- HWID 13
+    ["22334455-6677-8899-0011-223344556677"] = true, -- HWID 14
+    ["a261e02b-09e6-4bcf-8768-42d4a1dbbd54"] = true, -- HWID 15
+    ["9497d3c8-8ce9-4c38-86ba-28fbbc4fbe20"] = true, -- HWID 16
+    ["55667788-9900-1122-3344-556677889900"] = true, -- HWID 17
+    ["1dbaa4b5-b014-466e-a2b4-b27a3a89247f"] = true, -- HWID 18
+    ["77889900-1122-3344-5566-778899001122"] = true, -- HWID 19
+    ["88990011-2233-4455-6677-889900112233"] = true  -- HWID 20
+}
+ 
+local player = game.Players.LocalPlayer
+local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
+ 
+if not allowedHWIDs[hwid] then
+    print("Access Denied. Your HWID is not authorized.")
+    player:Kick("Unauthorized access detected.")
+    return
+end
+ 
+print("Access Granted. Welcome, " .. player.Name .. "!")
 
  repeat wait() until game:IsLoaded()
 
