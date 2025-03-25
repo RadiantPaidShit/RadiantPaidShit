@@ -119,7 +119,7 @@ local WatermarkConnection = game:GetService('RunService').RenderStepped:Connect(
         FrameCounter = 0;
     end;
 
-    Library:SetWatermark(('Radiant.Tech| %s fps | %s ms'):format(
+    Library:SetWatermark(('Radiant.Tech🌟| %s fps | %s ms'):format(
         math.floor(FPS),
         math.floor(game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValue())
     ));
@@ -386,6 +386,21 @@ LeftGp:AddToggle('Cfra992me', {
         getgenv().cframespeedtoggle = Value
     end
 })
+
+-- Adding Macro Button under Misc Tab
+local MacroGroup = Tabs.Misc:AddLeftGroupbox('Macro Settings')
+
+MacroGroup:AddButton('Macro', function()
+    if getgenv().Psalms.Macro == "OFF" then
+        getgenv().Psalms.Macro = "ON"
+        getgenv().Speed = 0.01 -- Lower value = faster macro speed
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/CookieScript/Trace.Iol/refs/heads/main/Macro", true))()
+        Library:Notify('Macro Enabled')
+    else
+        getgenv().Psalms.Macro = "OFF"
+        Library:Notify('Macro Disabled')
+    end
+end)
 
 SaveManager:SetLibrary(Library)
 ThemeManager:SetLibrary(Library)
