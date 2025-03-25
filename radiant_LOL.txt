@@ -402,6 +402,70 @@ MacroGroup:AddButton('Macro', function()
     end
 end)
 
+
+
+-- Add Auto Armor toggle button in Misc tab
+local AutoArmorGroup = Tabs.Misc:AddLeftGroupbox('Auto Armor')
+
+AutoArmorGroup:AddToggle('AutoArmorEnabled', {
+    Text = 'Enable Auto Armor',
+    Default = false,
+    Callback = function(Value)
+        getgenv().AutoArmor = Value
+    end
+})
+
+-- Function to check if armor is already equipped
+local function IsArmorEquipped()
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    if character then
+        for _, item in pairs(character:GetChildren()) do
+            if item:IsA("Tool") and item.Name:match("Armor") then
+                return true  -- Armor is equipped
+            end
+        end
+    end
+    return false  -- No armor found
+end
+
+-- Function to buy armor when it's gone
+local function BuyArmor()
+    local armorPad = workspace:FindFirstChild("MAP") and workspace.MAP.Pads:FindFirstChild("[Medium Armor]")
+    if armorPad and armorPad:FindFirstChild("ClickDetector") then
+        fireclickdetector(armorPad.ClickDetector)
+    end
+end
+
+-- Function to equip armor from backpack
+local function EquipArmor()
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    local backpack = player.Backpack
+
+    if character and backpack then
+        for _, item in pairs(backpack:GetChildren()) do
+            if item:IsA("Tool") and item.Name:match("Armor") then
+                item.Parent = character  -- Equip the armor
+                return
+            end
+        end
+    end
+end
+
+-- Auto Armor Logic (Only Rebuys When Armor is Gone)
+game:GetService("RunService").Heartbeat:Connect(function()
+    if getgenv().AutoArmor then
+        if not IsArmorEquipped() then  -- Only buy armor if it's missing
+            BuyArmor()
+            wait(1.5)  -- Wait for armor to appear in the backpack
+            EquipArmor()
+        end
+    end
+end)
+
+
+
 SaveManager:SetLibrary(Library)
 ThemeManager:SetLibrary(Library)
 
