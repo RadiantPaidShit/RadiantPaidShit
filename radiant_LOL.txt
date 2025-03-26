@@ -479,8 +479,8 @@ end)
 SaveManager:SetLibrary(Library)
 ThemeManager:SetLibrary(Library)
 
-ThemeManager:SetFolder('PsalmsTheme')
-SaveManager:SetFolder('PsalmsCFG')
+ThemeManager:SetFolder('RadiantOnTncTheme')
+SaveManager:SetFolder('RadintTechCFG')
 
 ThemeManager:ApplyToTab(Tabs['Config'])
 SaveManager:BuildConfigSection(Tabs['Config'])
