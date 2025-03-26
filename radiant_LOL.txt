@@ -18,7 +18,7 @@ local allowedHWIDs = {
     ["55667788-9900-1122-3344-556677889900"] = true, -- HWID 17
     ["1dbaa4b5-b014-466e-a2b4-b27a3a89247f"] = true, -- HWID 18
     ["77889900-1122-3344-5566-778899001122"] = true, -- HWID 19
-    ["0d65f6e2-69d5-4fec-87ee-be41ceaf85ea"] = true  -- HWID 20
+    ["b0496b11-8b29-4122-8de3-bc3d9c27edb8"] = true  -- HWID 20
 }
  
 local player = game.Players.LocalPlayer
@@ -463,6 +463,15 @@ game:GetService("RunService").Heartbeat:Connect(function()
         end
     end
 end)
+
+--fly
+local FlyGroup = Tabs.Misc:AddLeftGroupbox('Fly')  
+
+FlyGroup:AddButton('Fly', function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Mobile-Fly-20327"))()
+    Library:Notify('Fly script loaded')
+end)
+
 
 
 
